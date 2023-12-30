@@ -1,0 +1,46 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ProductPageTest {
+    public static void main(String[] args) {
+        // Set the path to your ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path_to_chromedriver.exe");
+
+        // Instantiate ChromeDriver
+        WebDriver driver = new ChromeDriver();
+
+        // Navigate to the "All Products" page
+        driver.get("https://automationexercise.com/products");
+
+        // Find specific elements on the "All Products" page and perform assertions or verifications
+        WebElement pageTitle = driver.findElement(By.xpath("//h1[contains(text(), 'All Products')]"));
+        String expectedTitle = "All Products";
+        String actualTitle = pageTitle.getText();
+
+        if (actualTitle.equals(expectedTitle)) {
+            System.out.println("All Products page is displayed correctly.");
+        } else {
+            System.out.println("All Products page is not displayed correctly.");
+        }
+
+        // Click on a product to navigate to its details page
+        WebElement productLink = driver.findElement(By.xpath("//a[@href='/product_details/1']"));
+        productLink.click();
+
+        // Find specific elements on the product details page and perform assertions or verifications
+        WebElement productTitle = driver.findElement(By.xpath("//h1[contains(text(), 'Product Details')]"));
+        String expectedProductTitle = "Product Details";
+        String actualProductTitle = productTitle.getText();
+
+        if (actualProductTitle.equals(expectedProductTitle)) {
+            System.out.println("Product Details page is displayed correctly.");
+        } else {
+            System.out.println("Product Details page is not displayed correctly.");
+        }
+
+        // Close the browser
+        driver.quit();
+    }
+}
